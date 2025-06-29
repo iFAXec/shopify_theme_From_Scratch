@@ -1,0 +1,38 @@
+<div class="announcement-bar"
+    style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; padding: 10px; text-align: center;">
+    {{ section.settings.announcement_text }}
+</div>
+
+{% schema %}
+{
+"name": "Announcement Bar",
+"settings": [
+{
+"type": "text",
+"id": "announcement_text",
+"label": "Announcement Text",
+"default": "Welcome to my Fab Jewellery!"
+},
+{
+"type": "color",
+"id": "background_color",
+"label": "Background Color",
+"default": "#f4f4f4"
+},
+{
+"type": "color",
+"id": "text_color",
+"label": "Text Color",
+"default": "#222222"
+}
+]
+,
+"presets": [
+{
+"name": "Announcement Bar",
+"category": "header"
+}
+]
+}
+
+{% endschema %}
