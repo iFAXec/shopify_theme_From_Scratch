@@ -1,14 +1,20 @@
 {
-    "type": "header",
-    "name": "Header-group",
-    "sections": {
-        "header":{
-            "type": "header",
-            "settings": {}
-        }
+  "type": "header",
+  "name": "Header-group",
+  "sections": {
+    "announcement_bar_9bVX4g": {
+      "type": "announcement-bar",
+      "name": "Announcement Bar",
+      "settings": {
+        "announcement_text": "Welcome to My Fab Jewellery!",
+        "background_color": "#ff6c6c",
+        "text_color": "#222222"
+      }
     },
-    "order": [
-        "header"
-    ]
-
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": ["announcement_bar_9bVX4g", "header"]
 }

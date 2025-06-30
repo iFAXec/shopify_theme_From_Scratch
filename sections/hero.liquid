@@ -1,0 +1,133 @@
+{% stylesheet %}
+
+.custom-hero-section {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+.custom-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+}
+.custom-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+.custom-hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+.custom-hero-content h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #f5f5f5;
+}
+.custom-hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+.custom-hero-btn {
+    display: inline-block;
+    padding: 0.85em 2.2em;
+    background: #ff6f61;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.custom-hero-btn:hover {
+    background: #e55d50;
+}
+@media (max-width: 600px) {
+    .custom-hero-content h1 {
+        font-size: 2rem;
+    }
+    .custom-hero-content h2 {
+        font-size: 1.1rem;
+    }
+    .custom-hero-section {
+        min-height: 40vh;
+    }
+}
+
+{% endstylesheet %}
+
+
+<section class="custom-hero-section" style="background-image: url({{ section.settings.background_image | img_url: '1800x' }});">
+    <div class="custom-hero-overlay"></div>
+    <div class="custom-hero-content">
+        <h1>{{ section.settings.heading }}</h1>
+        <h2>{{ section.settings.subheading }}</h2>
+        <p>{{ section.settings.description }}</p>
+        {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+            <a href="{{ section.settings.button_link }}" class="custom-hero-btn">{{ section.settings.button_text }}</a>
+        {% endif %}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Hero Section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "background_image",
+            "label": "Background Image"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Welcome to Our Store"
+        },
+        {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "Discover the latest trends"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Shop our exclusive collection and enjoy amazing deals."
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Hero Section",
+            "category": "General"
+        }
+    ]
+}
+{% endschema %}

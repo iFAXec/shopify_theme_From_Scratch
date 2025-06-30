@@ -10,7 +10,11 @@
                 {% assign main_menu = linklists.main-menu.links %}
                 <ul>
                     {% for link in main_menu %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {%- assign url = link.url -%}
+                        {%- if link.url == '/products/type=' -%}
+                            {%- assign url = '#' -%}
+                        {%- endif -%}
+                        <li><a href="{{ url }}">{{ link.title }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
