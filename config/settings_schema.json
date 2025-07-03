@@ -6,5 +6,24 @@
     "theme_version":"1.0.0",
     "theme_documentation_url": "https://github.com/Shopify/shopify-cli",
     "theme_support_url": "https://github.com/Shopify/shopify-themekit/issues"
+    }, 
+    {
+        "name": "Typography",
+        "settings": [
+           
+            {
+                "type": "font_picker",
+                "id": "heading_font",
+                "label": "Heading Font",
+                "default": "times_new_roman_n4"
+            },
+            {
+              "type": "font_picker",
+              "id": "body_font",
+              "default": "helvetica_n4"
+            
+            }
+        ]
+
     }
 ]

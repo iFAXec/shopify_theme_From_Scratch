@@ -5,8 +5,8 @@
         {% endif %}
 
         {% assign featured_collection = collections[section.settings.collection] %}
-        {% if section.settings.collection =! blank and featured_collection  %}
-            {%  if collection.products_count > 0 %}
+        {% if section.settings.collection != blank and featured_collection  %}
+            {%  if featured_collection.products_count > 0 %}
                 <div class="featured-collection-products">
                     {% for product in featured_collection.products limit: section.settings.products_to_show %}
                         <div class="featured-collection-product">
@@ -26,12 +26,14 @@
                         </div>
                     {% endfor %}
                 </div>
-            {% endif %} 
+            {% endif %}
         {% else %}
             <p>No products found in this collection.</p>
         {% endif %}
     </div>
 </section>
+
+
 
 {% schema %}
 {

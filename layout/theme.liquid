@@ -2,6 +2,15 @@
 
 <head>
     <title>{{page_title}}</title>
+    {% style %}
+         {{settings.heading_font | font_face: font_display: 'swap' }}
+         {{settings.body_font | font_face: font_display: 'swap'}}
+        :root{
+            --font-heading--family:{{settings.heading_font}},{{settings.heading_font.fallback_families}}
+            --font-body--family:{{settings.body_font.style}},{{settings.body_fontt.fallback_families}}
+        }
+    {% endstyle %}
+
     {{content_for_header}}
     <link rel="stylesheet" href="{{theme.css |  asset_url}} type="text/css media="all">
 </head>
