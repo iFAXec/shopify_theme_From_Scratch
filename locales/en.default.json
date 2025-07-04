@@ -1,7 +1,7 @@
 {
-    "cart":{
-        "title":"Your Cart",
-        "empty":"Your cart is currently empty",
-        "shopping":"Continue Shopping"
-    }
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is currently empty",
+    "shopping": "Continue Shopping"
+  }
 }

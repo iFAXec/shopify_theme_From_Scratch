@@ -1,0 +1,156 @@
+<footer class="custom-footer">
+    <div class="footer-container">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when "menu" %}
+            <div class="footer-column footer-menu">
+                    <h4 class="footer-title">{{blocks.settings.menu_title}}</h4>
+                    <ul>
+                    {% for link in linklists[blocks.settings.menu_links] %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+            </div>
+                
+            {% when "newsletter" %}
+                
+                <div class="footer-column footer-newsletter">
+                <h4 class="footer-title">Newsletter</h4>
+                <div class="newsletter-form">
+                {% form 'contact' %}
+                    <input type="hidden" name="form_type" value="customer" />
+                    <input type="hidden" name="utf8" value="✓" />
+                    <input type="email" name="contact[email]" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                {% endform %}
+            </div >
+        </div> 
+        {% endcase %}
+        
+    {% endfor %}
+        
+    </div>
+</footer>
+
+{% schema %}
+
+{
+  "name": "Footer",
+  "blocks": [
+    {
+        "type": "menu",
+        "name": "Footer menu",
+        "settings": [
+            {
+                "type":"link_list",
+                "id": "menu_links",
+                "label": "Menu Links",
+                "default": "footer"
+            }, 
+            {
+                "type":"text",
+                "id": "menu_title",
+                "label": "Menu Title", 
+                "default":"Quick Links"
+            }
+        ]
+    },
+    {
+        "type":"newsletter",
+        "name": "Newsletter Signup",
+        "settings": []
+    }
+  ]
+}
+
+{% endschema %}
+
+{% stylesheet %}
+    
+.custom-footer {
+    background: #23272b;
+    color: #fff;
+    padding: 40px 0 20px 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1 1 300px;
+    min-width: 250px;
+}
+
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu li {
+    margin-bottom: 12px;
+}
+
+.footer-menu a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-menu a:hover {
+    color: #fbb034;
+}
+
+.footer-newsletter .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-newsletter input[type="email"] {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.footer-newsletter button {
+    background: #fbb034;
+    color: #23272b;
+    border: none;
+    padding: 10px 0;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.footer-newsletter button:hover {
+    background: #ffda77;
+}
+
+@media (max-width: 700px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+    }
+}
+
+{% endstylesheet %}

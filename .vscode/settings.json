@@ -1,3 +1,6 @@
 {
-  "codium.codeCompletion.enable": false
+  "codium.codeCompletion.enable": false,
+  "[liquid]": {
+    "editor.formatOnSave": true
+  }
 }
