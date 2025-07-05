@@ -62,24 +62,54 @@
     <div class="product-image">
         <img src="{{product.featured_image |  image_url: width: 800 }}" alt="Product Image">
     </div>
-    <div class="product-details">
-        <h2 class="product-title">{{product.title}}</h2>
-        <p class="product-price">{{product.price | money }}</p>
-        <div class="product-description">
+
+    <div>
+    {% for block in section.blocks %}
+        
+    {% case block.type %}
+        {% when "title" %}
+            <h2 class="product-title">{{product.title}}</h2>
+            
+        {% when "description" %}
+            <div class="product-description">
             {{product.description}}
-        </div>
-        {% form "product", product %}
-        <input type="hidden" name="id" value="{{product.selected_or_first_available_variant.id}}">
-        <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-        {% endform %}
+            </div>
+        {% when "price" %}
+            <p class="product-price">{{product.price | money }}</p>
+        {% when "add_to_cart" %}
+            {% form "product", product %}
+                <input type="hidden" name="id" value="{{product.selected_or_first_available_variant.id}}">
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+            {% endform %}
+        {% endcase %}        
+        {% endfor %}
     </div>
+
+ 
 </div>
 
 {% schema %}
 {
     "name": "main-product",
     "tag": "section",
-    "settings": [],
+    "blocks": [
+        {
+        "type": "title",
+        "name": "Title"
+       },
+       {
+        "type": "description",
+        "name": "Description"
+       },
+       {
+        "type": "price",
+        "name": "Price"
+       },
+       {
+        "type": "add_to_cart",
+        "name": "Add to Cart"
+       }
+],
     "presets": [
         {
             "name": "Main Product"
