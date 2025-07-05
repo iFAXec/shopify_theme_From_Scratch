@@ -1,0 +1,96 @@
+<div id="sidebar-drawer" class="sidebar-drawer">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="sidebar-content">
+        <!-- Your sidebar content goes here -->
+        <button id="close-sidebar" class="close-btn" aria-label="Close sidebar">&times;</button>
+        <h2>Sidebar Drawer</h2>
+        <p>Add your sidebar content here.</p>
+    </div>
+</div>
+
+<script>
+    class SidebarDrawer extends HTMLElement {
+        connectedCallback() {
+            this.drawer = document.getElementById('sidebar-drawer');
+            this.backdrop = document.getElementById('sidebar-backdrop');
+            this.closeBtn = document.getElementById('close-sidebar');
+            window.openSidebar = () => this.open();
+            this.backdrop.addEventListener('click', () => this.close());
+            this.closeBtn.addEventListener('click', () => this.close());
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') this.close();
+            });
+        }
+        open() {
+            this.drawer.classList.add('open');
+        }
+        close() {
+            this.drawer.classList.remove('open');
+        }
+    }
+    customElements.define('sidebar-drawer', SidebarDrawer);
+</script>
+
+<style>
+.sidebar-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: none;
+    transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar-drawer.open {
+    width: 100vw;
+    pointer-events: auto;
+}
+.sidebar-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 550px);
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.sidebar-drawer.open .sidebar-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 550px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-drawer.open .sidebar-content {
+    transform: translateX(0);
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    align-self: flex-end;
+    margin: 1rem;
+    cursor: pointer;
+}
+</style>
+</div>
+
+{% schema %}
+{
+    "name": "Sidebar"
+    
+}
+{% endschema %}
