@@ -1,0 +1,103 @@
+<div class="side-cart-item" id="side-cart-item-12345">
+    <div class="side-cart-item__image">
+        <a href="/products/sample-product">
+            <img src="https://via.placeholder.com/100x100" alt="Sample Product">
+        </a>
+    </div>
+    <div class="side-cart-item__details">
+        <a class="side-cart-item__name" href="/products/sample-product">
+            Sample Product Title
+        </a>
+        <div class="side-cart-item__variant">
+            Medium / Blue
+        </div>
+        <div class="side-cart-item__quantity">
+            <button class="side-cart-item__qty-btn" data-action="decrease" data-key="sample-key-123">-</button>
+            <span class="side-cart-item__qty">2</span>
+            <button class="side-cart-item__qty-btn" data-action="increase" data-key="sample-key-123">+</button>
+        </div>
+        <div class="side-cart-item__price">
+            $29.99
+        </div>
+        <button class="side-cart-item__remove" data-key="sample-key-123" aria-label="Remove item">
+            &times;
+        </button>
+    </div>
+</div>
+
+<style>
+.side-cart-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    transition: background 0.2s;
+}
+.side-cart-item:hover {
+    background: #f9f9f9;
+}
+.side-cart-item__image img {
+    border-radius: 8px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+.side-cart-item__details {
+    flex: 1;
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.side-cart-item__name {
+    font-weight: 600;
+    color: #222;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+.side-cart-item__variant {
+    color: #888;
+    font-size: 0.95em;
+}
+.side-cart-item__quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.side-cart-item__qty-btn {
+    background: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.side-cart-item__qty-btn:hover {
+    background: #e0e0e0;
+}
+.side-cart-item__qty {
+    min-width: 24px;
+    text-align: center;
+}
+.side-cart-item__price {
+    font-weight: 500;
+    color: #333;
+    margin-top: 4px;
+}
+.side-cart-item__remove {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-size: 1.5em;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-left: auto;
+    transition: color 0.2s;
+}
+.side-cart-item__remove:hover {
+    color: #b71c1c;
+}
+</style>

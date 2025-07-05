@@ -15,12 +15,10 @@
       "type": "header",
       "settings": {}
     },
-
     "side-cart": {
       "type": "sidebar"
     }
   },
-
   "order": [
     "announcement_bar_9bVX4g",
     "header",
