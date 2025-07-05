@@ -1,0 +1,65 @@
+<style>
+.custom-image-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-image-block__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
+}
+.custom-image-block__placeholder {
+    width: 100%;
+    padding-top: 56.25%;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+</style>
+
+<div class="custom-image-block">
+    {% if block.settings.image != blank %}
+        <img 
+            src="{{ block.settings.image | image_url: width: 800 }}" 
+            srcset="
+                {{ block.settings.image | image_url: width: 400 }} 400w,
+                {{ block.settings.image | image_url: width: 800 }} 800w,
+                {{ block.settings.image | image_url: width: 1200 }} 1200w
+            "
+            sizes="(max-width: 600px) 100vw, 600px"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            class="custom-image-block__img"
+        >
+    {% else %}
+        <div class="custom-image-block__placeholder">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+    {% endif %}
+</div>
+
+{% schema %}
+
+{
+    "name": "Image",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        }
+    ], 
+    "presets": [
+      {
+        "name": "Image",
+        "category": "custom block"          
+    }
+    ]
+}
+{% endschema %}
