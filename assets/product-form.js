@@ -24,25 +24,6 @@ class ProductForm extends HTMLElement {
         this.removeEventListener('input', this.updateVariant.bind(this));
     }
 
-    variantFromOptionValues() {
-        const option1 = this.querySelector('select[name="option1"]')?.value || null;
-        const option2 = this.querySelector('select[name="option2"]')?.value || null;
-        const option3 = this.querySelector('select[name="option3"]')?.value || null;
-
-        return this.variants.find(variant => 
-            variant.option1 == option1 &&
-            variant.option2 == option2 &&
-            variant.option3 == option3
-        );
-    }
-
-    setSelectedOptionsFromVariant() {
-        if(this.currentVariant) {
-            if(this.querySelector('select[name="option1"]') && this.currentVariant.option1) this.querySelector('select[name="option1"]').value = this.currentVariant.option1;
-            if(this.querySelector('select[name="option2"]') && this.currentVariant.option2) this.querySelector('select[name="option2"]').value = this.currentVariant.option2;
-            if(this.querySelector('select[name="option3"]') && this.currentVariant.option3) this.querySelector('select[name="option3"]').value = this.currentVariant.option3;
-        }
-    }
 
     updateVariant() {
         this.currentVariant = this.variants.find(variant => variant.id == this.querySelector('[name="id"]:checked').value);
