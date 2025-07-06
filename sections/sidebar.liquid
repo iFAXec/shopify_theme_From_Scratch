@@ -46,8 +46,9 @@
 }
 .sidebar-drawer-close-btn {
     position: absolute;
-    top: 1px;
-    left: 1px;
+    top: 16px;
+    right: 16px;
+    left: auto;
     background: none;
     border: none;
     font-size: 2rem;
@@ -55,13 +56,25 @@
 }
 </style>
 
-<div class="sidebar-drawer-wrapper" id="sidebarDrawer">
-    <div class="sidebar-drawer-backdrop"></div>
-    <aside class="sidebar-drawer" role="complementary" aria-label="Sidebar drawer">
-        <button class="sidebar-drawer-close-btn" aria-label="Close sidebar">&times;</button>
-        <h2 style="margin:24px;">{{  "cart.title" | t }}</h2>
-    </aside>
-</div>
+<sidebar-drawer class="sidebar-drawer-wrapper" id="sidebarDrawer">
+    <side-cart>
+        <template id="side-cart-item">
+            {% render 'side-cart-item', liquid: false %}
+        </template>
+
+        <div class="sidebar-drawer-backdrop"></div>
+            <aside class="sidebar-drawer" role="complementary" aria-label="Sidebar drawer">
+                <button class="sidebar-drawer-close-btn" aria-label="Close sidebar">&times;</button>
+                <h2 style="margin:24px;">{{  "cart.title" | t }}</h2>
+                <div id="cart-items">
+                    {% for item in cart.items %}
+                        {% render 'side-cart-item', item:item, liquid: true %}
+                    {% endfor %}
+                </div>
+            </aside>
+    </side-cart>
+</sidebar-drawer>
+
 
 {% schema %}
 {

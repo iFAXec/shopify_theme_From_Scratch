@@ -1,26 +1,53 @@
-<div class="side-cart-item" id="side-cart-item-12345">
-    <div class="side-cart-item__image">
-        <a href="/products/sample-product">
-            <img src="https://via.placeholder.com/100x100" alt="Sample Product">
+{% liquid
+    if liquid
+        assign key = item.key
+        assign product_url = item.url
+        assign product_image = item.image | image_url: '100x100'
+        assign product_title = item.product.title
+        assign variant_title = item.variant.title
+        assign quantity = item.quantity
+        assign price = item.price | money
+    else
+        assign product_url = $$IMAGE_URL$$
+        assign product_image = $$IMAGE_URL$$ | image_url: '100x100'
+        assign product_title = $$ITEM_TITLE$$
+        assign variant_title = $$ITEM_VARIANT_TITLE$$
+        assign quantity = $$ITEM_QUANTITY$$
+        assign price = $$ITEM_PRICE$$
+
+    endif
+%}
+
+
+
+<div class="side-cart-item" id="side-cart-item-{{key}}">
+    variant-id = "{{item.variant.id}}"
+    item-count = "{{item.quantity}}"
+
+     <div class="side-cart-item__image">
+        <a href="{{product_url}}">
+            <img src="{{product_image | asset_url}}" alt="{{product_title}}" width="100" height="100">
         </a>
     </div>
     <div class="side-cart-item__details">
-        <a class="side-cart-item__name" href="/products/sample-product">
-            Sample Product Title
+        <a class="side-cart-item__name" href="{{product_url}}">
+            "{{product_title}}"
         </a>
         <div class="side-cart-item__variant">
-            Medium / Blue
+            {{variant_title}}
         </div>
         <div class="side-cart-item__quantity">
-            <button class="side-cart-item__qty-btn" data-action="decrease" data-key="sample-key-123">-</button>
-            <span class="side-cart-item__qty">2</span>
-            <button class="side-cart-item__qty-btn" data-action="increase" data-key="sample-key-123">+</button>
+            <button class="side-cart-item__qty-btn" data-action="decrease" data-key="{{key}}">-</button>
+            <span class="side-cart-item__qty">{{quantity}}</span>
+            <button class="side-cart-item__qty-btn" data-action="increase" data-key="{{key}}">+</button>
         </div>
         <div class="side-cart-item__price">
-            $29.99
+            {{price}}
         </div>
-        <button class="side-cart-item__remove" data-key="sample-key-123" aria-label="Remove item">
-            &times;
+        <button class="side-cart-item__remove" data-key="{{key}}" aria-label="Remove item" style="color:#444;">
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7.5 8.5V14.5M12.5 8.5V14.5M3 5.5H17M8.5 3.5H11.5C12.0523 3.5 12.5 3.94772 12.5 4.5V5.5H7.5V4.5C7.5 3.94772 7.94772 3.5 8.5 3.5ZM5.5 5.5V15.5C5.5 16.0523 5.94772 16.5 6.5 16.5H13.5C14.0523 16.5 14.5 16.0523 14.5 15.5V5.5" stroke="#444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </button>
     </div>
 </div>

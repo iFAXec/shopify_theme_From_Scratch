@@ -7,7 +7,7 @@
          {{settings.body_font | font_face: font_display: 'swap'}}
         :root{
             --font-heading--family:{{settings.heading_font}},{{settings.heading_font.fallback_families}}
-            --font-body--family:{{settings.body_font.style}},{{settings.body_fontt.fallback_families}}
+            --font-body--family:{{settings.body_font.style}},{{settings.body_font.fallback_families}}
         }
     {% endstyle %}
 
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{theme.css |  asset_url}} type="text/css media="all">
 
 
+    <script src="{{'shopify.money.js' | asset_url}}" defer></script>
     <script src="{{'cart.js' | asset_url}}" defer></script>
     <script src="{{'theme.js' | asset_url}}" defer></script>
 </head>
